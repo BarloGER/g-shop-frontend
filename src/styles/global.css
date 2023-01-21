@@ -1,0 +1,49 @@
+/* ----- start of globale color vars ----- */
+
+:root {
+  --white: #fff;
+  --black: #333;
+  --red: #ff003c;
+  --gray: #5b6574;
+  --light-grey: #9ca2a8;
+  --dust: #af9c7c;
+  --main-color: #2e333b;
+  --navbar: #393f49;
+  --footer: #9ca2a8;
+}
+
+/* ----- end of globale color vars ----- */
+
+/* ----- start of globale styling ----- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /*! 1 rem = 10px */
+  font-size: 62.5%;
+  font-family: "Roboto", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ----- debugging ----- */
+.border {
+  border: 1px solid red;
+}
