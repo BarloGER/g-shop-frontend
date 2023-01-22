@@ -1,0 +1,170 @@
+/* ---------------------------------- Used in Carousel.jsx ---------------------------------- */
+
+/* ToDo: Sort */
+/* ToDo: Delete unnecessary files */
+/* ToDo: Active dots maybe with NAVLINK*/
+/* ? Break heading in 2 parts */
+
+/* ---------------------------------- Start of carousel GENERAL styling ---------------------------------- */
+
+.carousel {
+  position: relative;
+  height: 40rem;
+}
+
+.carousel ::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------------------------------- End of carousel GENERAL styling ---------------------------------- */
+
+/* ---------------------------------- Start of carousel SPECIFIC styling ---------------------------------- */
+
+/* ---------------------------------- Start of slide styling ---------------------------------- */
+
+.carousel-viewport {
+  z-index: 0;
+  position: absolute;
+  display: flex;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.carousel-slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  background-color: var(--main-color);
+}
+
+.carousel-snapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: center;
+}
+
+.carousel-snapper .content {
+  display: flex;
+  height: 100%;
+  padding: 2rem 0 5rem 3rem;
+  text-align: start;
+  text-transform: uppercase;
+}
+
+.carousel-snapper .content .text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: start;
+}
+
+.carousel-snapper .content span {
+  padding: 0.4rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.3rem;
+  color: var(--white);
+  background-color: var(--red);
+}
+
+.carousel-snapper .content h2,
+h3 {
+  font-size: 2.5rem;
+  color: var(--white);
+}
+
+/* ---------------------------------- End of slide styling ---------------------------------- */
+
+/* ---------------------------------- Start of navigation elements styling ---------------------------------- */
+
+/* ---------------------------------- Start of navigation arrows styling ---------------------------------- */
+
+.carousel::before,
+.carousel::after,
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  margin-top: 37.5%;
+  top: 0;
+  height: 4rem;
+  width: 2.5rem;
+  font-size: 0;
+  transform: translateY(-50%);
+}
+
+.carousel::before,
+.carousel-prev {
+  left: 0rem;
+}
+
+.carousel::after,
+.carousel-next {
+  right: 0rem;
+}
+
+.carousel::before,
+.carousel::after {
+  z-index: 1;
+  content: "";
+  background-size: 1.5rem 1.5rem;
+  background-repeat: no-repeat;
+  background-position: center center;
+  pointer-events: none;
+  font-size: 2.5rem;
+  line-height: 4rem;
+  text-align: center;
+  color: var(--white);
+  background-color: var(--main-color);
+}
+
+.carousel::before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+.carousel::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------- End of navigation arrows styling ---------------------------------- */
+
+/* ---------------------------------- Start of navigation bullet point styling ---------------------------------- */
+
+.carousel-navigation {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+}
+
+.carousel-navigation-list,
+.carousel-navigation-item {
+  display: inline-block;
+}
+
+.carousel-navigation-button {
+  display: inline-block;
+  margin: 0 0.5rem 1rem 0.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  border: 0.25rem solid var(--white);
+  font-size: 0;
+  background-color: var(--main-color);
+}
+
+/* ---------------------------------- End of navigation bullet point styling ---------------------------------- */
+
+/* ---------------------------------- End of navigation elements styling ---------------------------------- */
+
+/* ---------------------------------- End of carousel SPECIFIC styling ---------------------------------- */

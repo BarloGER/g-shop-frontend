@@ -1,0 +1,115 @@
+/* ---------------------------------- Used in Login.jsx ---------------------------------- */
+
+/* ? Maybe change input borders */
+/* ToDo: Change heading font */
+
+/* ---------------------------------- Start of login GENERAL styling ---------------------------------- */
+
+.login-form {
+  margin-top: 2rem;
+  padding: 2rem;
+  width: 80%;
+  height: fit-content;
+  line-height: 1.4;
+  opacity: 1;
+  background-color: var(--white);
+}
+
+.login-form h3 {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.login-form .button {
+  padding: 1rem;
+  border: none;
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--white);
+  background-color: var(--red);
+}
+
+.login-form input {
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+/* ---------------------------------- End of login GENERAL styling ---------------------------------- */
+
+/* ---------------------------------- Start of SPECIFIC styling ---------------------------------- */
+
+/* ---------------------------------- Start of form background styling ---------------------------------- */
+
+.background {
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  box-shadow: inset 0 0 100rem var(--black);
+  overflow: auto;
+}
+
+/* ---------------------------------- End of form background styling ---------------------------------- */
+
+/* ---------------------------------- Start of upper half styling ---------------------------------- */
+
+.login-form .new-customer {
+  display: flex;
+  flex-direction: column;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.login-form .new-customer p {
+  margin-bottom: 2rem;
+}
+
+/* ---------------------------------- End of upper half styling ---------------------------------- */
+
+/* ---------------------------------- Start of lower half styling ---------------------------------- */
+
+.login-form .login-box {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+}
+
+.login-form .login-box .input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.login-form .login-box .button-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.login-form .forgotten {
+  background-color: var(--main-color);
+}
+
+/* ---------------------------------- End of lower half styling ---------------------------------- */
+
+/* ---------------------------------- Start of icon styling ---------------------------------- */
+
+.login-form .cross {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.login-form .cross-icon {
+  color: var(--black);
+}
+
+/* ---------------------------------- End of icon styling ---------------------------------- */
+
+/* ---------------------------------- End of SPECIFIC styling ---------------------------------- */
