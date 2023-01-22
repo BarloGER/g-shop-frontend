@@ -1,8 +1,10 @@
-/* ----- Used in Home.jsx----- */
+/* ---------------------------------- Used in Home.jsx ---------------------------------- */
 
 /* ToDo: Add drop-down for acccount/ konto with second arrow pointing up*/
 /* ToDo: Add search-bar on second row on top of navbar */
 /* ToDo: Scale for tablet and desktop*/
+
+/* ---------------------------------- Start of GENERAL styling ---------------------------------- */
 
 .top {
   height: 5rem;
@@ -12,7 +14,7 @@
   justify-content: space-between;
 }
 
-.top a {
+.top ul a {
   color: var(--dust);
 }
 
@@ -20,9 +22,78 @@
   font-size: 4rem;
   display: flex;
   gap: 1.5rem;
-  margin-right: 1.7rem;
+  margin-right: 2rem;
   text-transform: uppercase;
 }
+
+/* ---------------------------------- End of GENERAL styling ---------------------------------- */
+
+/* ---------------------------------- Start of SPECIFIC styling ---------------------------------- */
+
+/* ---------------------------------- Start of acc styling ---------------------------------- */
+
+.top .acc-div {
+  display: none;
+}
+
+.top .acc-div-expanded {
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 3 / 1;
+  top: 5rem;
+  right: 7rem;
+  width: 20rem;
+  padding: 1rem 1.5rem;
+  background-color: var(--navbar);
+}
+
+.top .acc-div-expanded button {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  color: var(--white);
+  background-color: var(--red);
+}
+
+.top .acc-div-expanded a {
+  color: var(--white);
+}
+
+/* ---------------------------------- End of acc styling ---------------------------------- */
+
+/* ---------------------------------- Start of searchbar styling ---------------------------------- */
+
+.top .search-bar {
+  display: none;
+}
+
+.top .search-bar-expanded {
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  top: 5rem;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background-color: var(--navbar);
+}
+
+.top .search-bar-expanded input {
+  padding: 1rem;
+  width: 30rem;
+  font-size: 1.5rem;
+}
+
+/* ---------------------------------- End of searchbar styling ---------------------------------- */
+
+/* ---------------------------------- Start of icon styling ---------------------------------- */
 
 .top .icon {
   display: flex;
@@ -34,8 +105,12 @@
 }
 
 .top .search-icon {
-  size: 2.5rem;
   width: 5rem;
+}
+
+.top .search-icon-expanded {
+  width: 5rem;
+  background-color: var(--navbar);
 }
 
 .top .basket-icon {
@@ -58,3 +133,12 @@
   color: var(--white);
   background-color: var(--red);
 }
+
+.top .cross-icon {
+  margin-right: 1rem;
+  color: var(--white);
+}
+
+/* ---------------------------------- End of icon styling ---------------------------------- */
+
+/* ---------------------------------- End of SPECIFIC styling ---------------------------------- */

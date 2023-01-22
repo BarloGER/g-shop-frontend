@@ -1,4 +1,4 @@
-/* ----- start of globale color vars ----- */
+/* ---------------------------------- start of global color vars ---------------------------------- */
 
 :root {
   --white: #fff;
@@ -12,9 +12,9 @@
   --footer: #9ca2a8;
 }
 
-/* ----- end of globale color vars ----- */
+/* ---------------------------------- end of global color vars ---------------------------------- */
 
-/* ----- start of globale styling ----- */
+/* ---------------------------------- start of global styling ---------------------------------- */
 
 * {
   margin: 0;
@@ -43,7 +43,7 @@ a {
   text-decoration: none;
 }
 
-/* ----- debugging ----- */
+/* ---------------------------------- debugging ---------------------------------- */
 .border {
   border: 1px solid red;
 }
