@@ -84,6 +84,10 @@ export default function Home() {
             </li>
           </ul>
         </div>
+
+        <div className="placeholder-for-navbar">
+          <h1>Spacer</h1>
+        </div>
       </header>
     </>
   );
