@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Carousel from "./Carousel";
+import Login from "./Login";
 import {
   FaSearch,
   FaShoppingBasket,
@@ -14,11 +15,19 @@ import "../styles/home.css";
 
 export default function Home() {
   const [isAccExpanded, setIsAccExpanded] = useState(false);
+  const [isAccClicked, setIsAccClicked] = useState(false);
   const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false);
 
   return (
     <>
       <header>
+        {isAccClicked ? (
+          <Login
+            changeStatus={(isAccClicked) => setIsAccClicked(isAccClicked)}
+          />
+        ) : (
+          console.log()
+        )}
         <div className="top">
           <a
             href="#"
@@ -75,7 +84,14 @@ export default function Home() {
               </a>
               <div className={!isAccExpanded ? "acc-div" : "acc-div-expanded"}>
                 <a href="#">Merkzettel (0)</a>
-                <button>Anmelden</button>
+                <button
+                  onClick={() => {
+                    setIsAccClicked(true);
+                    setIsAccExpanded(false);
+                  }}
+                >
+                  Anmelden
+                </button>
               </div>
             </li>
             <li>
@@ -94,17 +110,6 @@ export default function Home() {
       </header>
 
       <main>
-        {/* <div className="carousel">
-          <img
-            src="https://www.tacwrk.com/img/96907/96907.jpg?options=rs:fill:1800:864/g:ce/dpr:1"
-            alt="Tasmanian Tiger Base Carrier System"
-          />
-          <div className="content">
-            <span>Tasmanian Tiger</span>
-            <h2>Base Carrier System</h2>
-          </div>
-        </div> */}
-
         <Carousel />
       </main>
     </>
