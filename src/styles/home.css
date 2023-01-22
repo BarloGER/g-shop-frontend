@@ -1,0 +1,60 @@
+/* ----- Used in Home.jsx----- */
+
+/* ToDo: Add drop-down for acccount/ konto with second arrow pointing up*/
+/* ToDo: Add search-bar on second row on top of navbar */
+/* ToDo: Scale for tablet and desktop*/
+
+.top {
+  height: 5rem;
+  background-color: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top a {
+  color: var(--dust);
+}
+
+.top ul {
+  font-size: 4rem;
+  display: flex;
+  gap: 1.5rem;
+  margin-right: 1.7rem;
+  text-transform: uppercase;
+}
+
+.top .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  color: var(--white);
+  background-color: var(--red);
+}
+
+.top .search-icon {
+  size: 2.5rem;
+  width: 5rem;
+}
+
+.top .basket-icon {
+  width: 3.5rem;
+  border-radius: 50%;
+}
+
+.top .basket-icon::before {
+  content: attr(data-count);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  top: 0rem;
+  right: 0.5rem;
+  width: 2rem;
+  border: 2px solid var(--main-color);
+  border-radius: 50%;
+  color: var(--white);
+  background-color: var(--red);
+}
