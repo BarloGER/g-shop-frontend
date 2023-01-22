@@ -4,7 +4,7 @@ export default function Carousel() {
   return (
     <section className="carousel" aria-label="Gallery">
       <ol className="carousel-viewport">
-        <li id="carousel-slide1" tabindex="0" className="carousel-slide">
+        <li id="carousel-slide1" tabIndex="0" className="carousel-slide">
           <div className="carousel-snapper">
             <img
               src="https://www.tacwrk.com/img/96907/96907.jpg?options=rs:fill:1800:864/g:ce/dpr:1"
@@ -25,7 +25,7 @@ export default function Carousel() {
           </a>
         </li>
 
-        <li id="carousel-slide2" tabindex="0" className="carousel-slide">
+        <li id="carousel-slide2" tabIndex="0" className="carousel-slide">
           <div className="carousel-snapper">
             <img
               src="https://www.tacwrk.com/img/98618/98618.jpg?options=rs:fill:1800:864/g:ce/dpr:1"
@@ -49,7 +49,7 @@ export default function Carousel() {
           </a>
         </li>
 
-        <li id="carousel-slide3" tabindex="0" className="carousel-slide">
+        <li id="carousel-slide3" tabIndex="0" className="carousel-slide">
           <div className="carousel-snapper">
             <img
               src="https://www.tacwrk.com/img/92453/92453.jpg?options=rs:fill:1800:864/g:ce/dpr:1"
@@ -70,7 +70,7 @@ export default function Carousel() {
           </a>
         </li>
 
-        <li id="carousel-slide4" tabindex="0" className="carousel-slide">
+        <li id="carousel-slide4" tabIndex="0" className="carousel-slide">
           <div className="carousel-snapper">
             <img
               src="https://www.tacwrk.com/img/98348/98348.jpg?options=rs:fill:1800:864/g:ce/dpr:1"
