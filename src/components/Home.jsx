@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Carousel from "./Carousel";
 import {
   FaSearch,
   FaShoppingBasket,
@@ -85,10 +86,27 @@ export default function Home() {
           </ul>
         </div>
 
-        <div className="placeholder-for-navbar">
-          <h1>Spacer</h1>
-        </div>
+        <nav>
+          <div className="placeholder-for-navbar">
+            <h1>Placeholder</h1>
+          </div>
+        </nav>
       </header>
+
+      <main>
+        {/* <div className="carousel">
+          <img
+            src="https://www.tacwrk.com/img/96907/96907.jpg?options=rs:fill:1800:864/g:ce/dpr:1"
+            alt="Tasmanian Tiger Base Carrier System"
+          />
+          <div className="content">
+            <span>Tasmanian Tiger</span>
+            <h2>Base Carrier System</h2>
+          </div>
+        </div> */}
+
+        <Carousel />
+      </main>
     </>
   );
 }

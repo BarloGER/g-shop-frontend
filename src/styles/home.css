@@ -5,6 +5,16 @@
 /* ToDo: Scale for tablet and desktop*/
 
 /* ---------------------------------- Start of GENERAL styling ---------------------------------- */
+header {
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+}
+
+main {
+  position: relative;
+  top: 10rem;
+}
 
 .top {
   height: 5rem;

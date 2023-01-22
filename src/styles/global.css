@@ -20,7 +20,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /*! 1 rem = 10px */
+  /** 1 rem = 10px */
   font-size: 62.5%;
   font-family: "Roboto", sans-serif;
 }
