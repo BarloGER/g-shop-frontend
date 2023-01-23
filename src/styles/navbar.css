@@ -1,0 +1,12 @@
+/* ---------------------------------- Start of navbar styling ---------------------------------- */
+
+.placeholder-for-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  font-size: 3rem;
+  background-color: var(--red);
+}
+
+/* ---------------------------------- End of navbar styling ---------------------------------- */
