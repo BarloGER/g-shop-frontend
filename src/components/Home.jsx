@@ -5,12 +5,7 @@ import "../styles/home.css";
 export default function Home() {
   return (
     <>
-      <header>
-        <Header />
-      </header>
-      <main>
-        <Carousel />
-      </main>
+      <Carousel />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import "../styles/login.css";
 
@@ -19,9 +20,9 @@ export default function Login(props) {
             Bestellvorgang, können Sie abweichende Versandadressen speichern und
             sind immer über Ihren Auftragsstatus informiert.
           </p>
-          <a href="#" className="button">
+          <Link to="/SignUp" className="button">
             Kundenkonto anlegen
-          </a>
+          </Link>
         </div>
         <div className="login-box">
           <h3>Einloggen</h3>

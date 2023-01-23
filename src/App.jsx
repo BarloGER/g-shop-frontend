@@ -3,17 +3,18 @@ import {
   createRoutesFromElements,
   RouterProvider,
   Route,
-  Outlet,
 } from "react-router-dom";
+
+import Layout from "./components/Layout";
 import Home from "./components/Home";
-import Test from "./components/Test";
+import SignUp from "./components/SignUp";
 
 export default function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Outlet />}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/test" element={<Test />} />
+        <Route path="/signup" element={<SignUp />} />
       </Route>
     )
   );
