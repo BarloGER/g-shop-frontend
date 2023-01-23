@@ -5,14 +5,19 @@
   --black: #333;
   --red: #ff003c;
   --gray: #5b6574;
-  --light-grey: #9ca2a8;
+  --light-gray: #9ca2a8;
   --dust: #af9c7c;
   --main-color: #2e333b;
   --navbar: #393f49;
-  --footer: #9ca2a8;
 }
 
 /* ---------------------------------- End of global color vars ---------------------------------- */
+
+/* ToDo: Remove input highlighting */
+/* ToDo: Global styling for buttons */
+/* ToDo: Change heading font */
+/* ? Maybe change input borders */
+/* ToDo: Scale for tablet and desktop*/
 
 /* ---------------------------------- Start of global styling ---------------------------------- */
 
