@@ -9,7 +9,7 @@ import Layout from "./components/Layout";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 
-export default function App() {
+const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
@@ -20,4 +20,6 @@ export default function App() {
   );
 
   return <RouterProvider router={router} />;
-}
+};
+
+export default App;

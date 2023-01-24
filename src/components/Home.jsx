@@ -2,10 +2,12 @@ import Header from "./Header";
 import Carousel from "./Carousel";
 import "../styles/home.css";
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Carousel />
     </>
   );
-}
+};
+
+export default Home;

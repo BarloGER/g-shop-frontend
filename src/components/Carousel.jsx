@@ -1,6 +1,6 @@
 import "../styles/carousel.css";
 
-export default function Carousel() {
+const Carousel = () => {
   return (
     <section className="carousel" aria-label="Gallery">
       <ol className="carousel-viewport">
@@ -118,4 +118,6 @@ export default function Carousel() {
       </aside>
     </section>
   );
-}
+};
+
+export default Carousel;

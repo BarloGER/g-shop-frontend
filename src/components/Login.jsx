@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import "../styles/login.css";
 
-export default function Login(props) {
+const Login = (props) => {
   return (
     <section className="background">
       <div className="login-form">
@@ -42,4 +42,6 @@ export default function Login(props) {
       </div>
     </section>
   );
-}
+};
+
+export default Login;

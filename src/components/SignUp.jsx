@@ -4,7 +4,7 @@ import "../styles/signUp.css";
 // ToDo: Add second personal-data form for alternative address
 // ? Maybe add Datenschutz hint
 
-export default function SignUp() {
+const SignUp = () => {
   return (
     <section className="sign-up">
       <div className="description">
@@ -71,4 +71,6 @@ export default function SignUp() {
       </form>
     </section>
   );
-}
+};
+
+export default SignUp;

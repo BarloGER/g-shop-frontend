@@ -10,7 +10,7 @@ import Login from "./Login";
 import NavBar from "./NavBar";
 import "../styles/header.css";
 
-export default function Header() {
+const Header = () => {
   const [isAccExpanded, setIsAccExpanded] = useState(false);
   const [isAccClicked, setIsAccClicked] = useState(false);
   const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false);
@@ -101,4 +101,6 @@ export default function Header() {
       </nav>
     </>
   );
-}
+};
+
+export default Header;
