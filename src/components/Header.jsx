@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   FaSearch,
   FaShoppingBasket,
@@ -6,11 +7,19 @@ import {
   FaAngleUp,
   FaTimes,
 } from "react-icons/fa";
-import Login from "./Login";
+
+import SignIn from "./SignIn";
 import NavBar from "./NavBar";
+
 import "../styles/header.css";
 
-const Header = () => {
+const Header = ({
+  isAuthenticated,
+  setToken,
+  loadingAuthRequest,
+  setLoadingAuthRequest,
+  logOut,
+}) => {
   const [isAccExpanded, setIsAccExpanded] = useState(false);
   const [isAccClicked, setIsAccClicked] = useState(false);
   const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false);
@@ -18,13 +27,18 @@ const Header = () => {
   return (
     <>
       {isAccClicked ? (
-        <Login changeStatus={(isAccClicked) => setIsAccClicked(isAccClicked)} />
+        <SignIn
+          setIsAccClicked={setIsAccClicked}
+          setToken={setToken}
+          loadingAuthRequest={loadingAuthRequest}
+          setLoadingAuthRequest={setLoadingAuthRequest}
+        />
       ) : (
         console.log()
       )}
       <div className="top">
-        <a
-          href="#"
+        <Link
+          to="#"
           className={
             !isSearchBarExpanded
               ? "icon search-icon"
@@ -35,7 +49,7 @@ const Header = () => {
           }}
         >
           <FaSearch size="2.5rem" />
-        </a>
+        </Link>
         <div
           className={
             !isSearchBarExpanded ? "search-bar" : "search-bar-expanded"
@@ -44,7 +58,7 @@ const Header = () => {
           <form>
             <input type="text" placeholder="Suchbegriff eingeben..." />
           </form>
-          <a href="#">
+          <Link to="#">
             <FaTimes
               size="2.5rem"
               className="cross-icon"
@@ -52,19 +66,19 @@ const Header = () => {
                 setIsSearchBarExpanded(!isSearchBarExpanded);
               }}
             />
-          </a>
+          </Link>
         </div>
 
         <ul>
           <li>
-            <a href="#">De</a>
+            <Link to="#">De</Link>
           </li>
           <li>
-            <a href="#">En</a>
+            <Link to="#">En</Link>
           </li>
           <li className={isAccExpanded ? "acc" : "acc-expanded"}>
-            <a
-              href="#"
+            <Link
+              to="#"
               onClick={() => {
                 setIsAccExpanded(!isAccExpanded);
               }}
@@ -75,23 +89,44 @@ const Header = () => {
               ) : (
                 <FaAngleUp className="arrow-icon" />
               )}
-            </a>
+            </Link>
             <div className={!isAccExpanded ? "acc-div" : "acc-div-expanded"}>
-              <a href="#">Merkzettel (0)</a>
-              <button
-                onClick={() => {
-                  setIsAccClicked(true);
-                  setIsAccExpanded(false);
-                }}
-              >
-                Anmelden
-              </button>
+              <Link to="#">Merkzettel (0)</Link>
+              {!isAuthenticated ? (
+                <button
+                  onClick={() => {
+                    setIsAccClicked(true);
+                    setIsAccExpanded(false);
+                  }}
+                >
+                  Anmelden
+                </button>
+              ) : (
+                <>
+                  <button
+                    onClick={() => {
+                      setIsAccClicked(false);
+                      setIsAccExpanded(false);
+                    }}
+                  >
+                    <Link to="/auth">Mein Konto</Link>
+                  </button>
+                  <button
+                    onClick={() => {
+                      logOut();
+                      setIsAccExpanded(false);
+                    }}
+                  >
+                    <Link to="/">Ausloggen</Link>
+                  </button>
+                </>
+              )}
             </div>
           </li>
           <li>
-            <a href="#" className="icon basket-icon" data-count="0">
+            <Link to="#" className="icon basket-icon" data-count="0">
               <FaShoppingBasket size="2rem" />
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
