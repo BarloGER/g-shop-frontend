@@ -115,6 +115,7 @@ select {
   text-transform: uppercase;
   color: var(--white);
   background-color: var(--red);
+  margin-bottom: 1rem;
 }
 
 /* ---------------------------------- End of SPECIFIC styling ---------------------------------- */
