@@ -1,0 +1,120 @@
+/* ---------------------------------- Used in SignUp.jsx ---------------------------------- */
+
+/* ---------------------------------- Start of GENERAL styling ---------------------------------- */
+
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------------------------------- End of GENERAL styling ---------------------------------- */
+
+/* ---------------------------------- Start of SPECIFIC styling ---------------------------------- */
+
+/* ---------------------------------- Start of description styling ---------------------------------- */
+
+.sign-up .description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  gap: 2rem;
+  font-size: 2.5rem;
+  color: var(--main-color);
+}
+
+.sign-up .description h1,
+h4 {
+  font-size: 2.5rem;
+  margin-top: 3rem;
+  color: var(--main-color);
+}
+
+/* ---------------------------------- End of description styling ---------------------------------- */
+
+/* ---------------------------------- Start of form styling ---------------------------------- */
+
+.sign-up .data {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.sign-up .data input,
+select {
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.sign-up .data .login-data {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
+
+.sign-up .data .personal-data {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sign-up .data .personal-data .buisness {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sign-up .data .personal-data .buisness a {
+  font-size: 1.5rem;
+  color: var(--light-gray);
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
+
+.sign-up .data .personal-data .street,
+.town {
+  display: flex;
+  gap: 2rem;
+}
+
+.sign-up .data .personal-data .item1 {
+  width: 20%;
+}
+
+.sign-up .data .personal-data .item2 {
+  width: 80%;
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
+
+.sign-up .data .delivery-address {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.sign-up .data .delivery-address label {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  color: var(--gray);
+  gap: 0.5rem;
+}
+
+/* ---------------------------------- End of form styling ---------------------------------- */
+
+.sign-up .button {
+  padding: 1rem;
+  border: none;
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--white);
+  background-color: var(--red);
+}
+
+/* ---------------------------------- End of SPECIFIC styling ---------------------------------- */

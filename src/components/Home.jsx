@@ -1,7 +1,12 @@
-export default function Home() {
+import Carousel from "./Carousel";
+import "../styles/home.css";
+
+const Home = () => {
   return (
     <>
-      <h1>Willkommen</h1>
+      <Carousel />
     </>
   );
-}
+};
+
+export default Home;
