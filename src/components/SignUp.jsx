@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { registerUser } from "../utils/auth";
 import { Navigate } from "react-router-dom";
 import Loading from "./Loading";
+import { handleBackendErrors } from "../utils/handleBackendErrors";
 import useCapsLockCheck from "../utils/checkCapsLock";
 import "../styles/signUp.css";
 
@@ -146,44 +147,11 @@ const SignUp = ({
 
       // Handling backend errors
       if (error) {
-        const updatedErrors = { ...errors };
-        if (error.includes("E-Mail")) {
-          updatedErrors.email = error;
-          setError(updatedErrors);
-        } else if (error.includes("Passwort")) {
-          updatedErrors.password = error;
-          setError(updatedErrors);
-        } else if (error.includes("Anrede")) {
-          updatedErrors.salutation = error;
-          setError(updatedErrors);
-        } else if (error.includes("Vorname")) {
-          updatedErrors.firstname = error;
-          setError(updatedErrors);
-        } else if (error.includes("Nachname")) {
-          updatedErrors.lastname = error;
-          setError(updatedErrors);
-        } else if (error.includes("Geburtsdatum")) {
-          updatedErrors.birth_date = error;
-          setError(updatedErrors);
-        } else if (error.includes("Postleitzahl")) {
-          updatedErrors.zip_code = error;
-          setError(updatedErrors);
-        } else if (error.includes("Stadt")) {
-          updatedErrors.city = error;
-          setError(updatedErrors);
-        } else if (error.includes("Straße")) {
-          updatedErrors.street = error;
-          setError(updatedErrors);
-        } else if (error.includes("Hausnummer")) {
-          updatedErrors.street_number = error;
-          setError(updatedErrors);
-        } else if (error.includes("Land")) {
-          updatedErrors.country = error;
-          setError(updatedErrors);
-        }
+        handleBackendErrors(errors, setError, error);
         setLoadingAuthRequest(false);
         return;
       }
+
       setToken(data.token);
       setIsAuthenticated(true);
       setLoadingAuthRequest(false);
