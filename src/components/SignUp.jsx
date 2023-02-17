@@ -2,6 +2,9 @@ import { useState, useRef } from "react";
 import { registerUser } from "../utils/auth";
 import { Navigate } from "react-router-dom";
 import Loading from "./Loading";
+import { handleBackendErrors } from "../utils/handleBackendErrors";
+import { validateInput } from "../utils/validateInput";
+import useCapsLockCheck from "../utils/checkCapsLock";
 import "../styles/signUp.css";
 
 // ToDo: Add Input Fields for business customer
@@ -65,11 +68,12 @@ const SignUp = ({
     tel: "",
   });
   const errorRef = useRef();
-  const [isCapsLockOn, setIsCapsLockOn] = useState(false);
+  const [isCapsLockOn, checkCapsLock] = useCapsLockCheck();
 
   const handleChange = (e) => {
-    setFormState((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-    validateInput(e);
+    const { id, value } = e.target;
+    setFormState((prev) => ({ ...prev, [id]: value }));
+    setError(validateInput(id, value, confirm_password, password, error));
   };
 
   // Submit the form
@@ -146,154 +150,17 @@ const SignUp = ({
 
       // Handling backend errors
       if (error) {
-        const updatedErrors = { ...errors };
-        if (error.includes("E-Mail")) {
-          updatedErrors.email = error;
-          setError(updatedErrors);
-        } else if (error.includes("Passwort")) {
-          updatedErrors.password = error;
-          setError(updatedErrors);
-        } else if (error.includes("Anrede")) {
-          updatedErrors.salutation = error;
-          setError(updatedErrors);
-        } else if (error.includes("Vorname")) {
-          updatedErrors.firstname = error;
-          setError(updatedErrors);
-        } else if (error.includes("Nachname")) {
-          updatedErrors.lastname = error;
-          setError(updatedErrors);
-        } else if (error.includes("Geburtsdatum")) {
-          updatedErrors.birth_date = error;
-          setError(updatedErrors);
-        } else if (error.includes("Postleitzahl")) {
-          updatedErrors.zip_code = error;
-          setError(updatedErrors);
-        } else if (error.includes("Stadt")) {
-          updatedErrors.city = error;
-          setError(updatedErrors);
-        } else if (error.includes("Straße")) {
-          updatedErrors.street = error;
-          setError(updatedErrors);
-        } else if (error.includes("Hausnummer")) {
-          updatedErrors.street_number = error;
-          setError(updatedErrors);
-        } else if (error.includes("Land")) {
-          updatedErrors.country = error;
-          setError(updatedErrors);
-        }
+        handleBackendErrors(errors, setError, error);
         setLoadingAuthRequest(false);
         return;
       }
+
       setToken(data.token);
       setIsAuthenticated(true);
       setLoadingAuthRequest(false);
       localStorage.setItem("token", data.token);
     } catch (error) {
       setLoadingAuthRequest(false);
-    }
-  };
-
-  // Validate the input
-  const validateInput = (e) => {
-    let { id, value } = e.target;
-    setError((prev) => {
-      const stateObj = { ...prev, [id]: "" };
-
-      switch (id) {
-        case "email":
-          if (!value) {
-            stateObj[id] = "Bitte Email angeben.";
-          }
-          break;
-
-        case "password":
-          if (!value) {
-            stateObj[id] = "Bitte Passwort angeben.";
-          } else if (confirm_password && value !== confirm_password) {
-            stateObj["confirm_password"] = "Passwort stimmt nicht überein.";
-          } else {
-            stateObj["confirm_password"] = confirm_password
-              ? ""
-              : error.confirm_password;
-          }
-          break;
-
-        case "confirm_password":
-          if (!value) {
-            stateObj[id] = "Bitte Passwort wiederholen.";
-          } else if (password && value !== password) {
-            stateObj[id] = "Passwort stimmt nicht überein.";
-          }
-          break;
-
-        case "salutation":
-          if (!value) {
-            stateObj[id] = "Bitte Anrede angeben.";
-          }
-          break;
-
-        case "firstname":
-          if (!value) {
-            stateObj[id] = "Bitte Vornamen angeben.";
-          }
-          break;
-
-        case "lastname":
-          if (!value) {
-            stateObj[id] = "Bitte Nachnamen angeben.";
-          }
-          break;
-
-        case "birth_date":
-          if (!value) {
-            stateObj[id] = "Bitte Geburtsdatum angeben.";
-          }
-          break;
-
-        case "zip_code":
-          if (!value) {
-            stateObj[id] = "Bitte Postleitzahl angeben.";
-          }
-          break;
-
-        case "city":
-          if (!value) {
-            stateObj[id] = "Bitte Stadt angeben.";
-          }
-          break;
-
-        case "street":
-          if (!value) {
-            stateObj[id] = "Bitte Straße angeben.";
-          }
-          break;
-
-        case "street_number":
-          if (!value) {
-            stateObj[id] = "Bitte Hausnummer angeben.";
-          }
-          break;
-
-        case "country":
-          if (!value) {
-            stateObj[id] = "Bitte Land angeben.";
-          }
-          break;
-
-        default:
-          break;
-      }
-
-      return stateObj;
-    });
-  };
-
-  // Check if the caps lock is on
-  const checkCapsLock = (event) => {
-    if (event.getModifierState("CapsLock")) {
-      setIsCapsLockOn(true);
-    } else {
-      setIsCapsLockOn(false);
     }
   };
 
@@ -322,7 +189,7 @@ const SignUp = ({
               type="email"
               placeholder="E-Mail Adresse"
               value={email}
-              onBlur={validateInput}
+              onBlur={handleChange}
               onChange={handleChange}
             />
 
@@ -341,7 +208,7 @@ const SignUp = ({
               placeholder="Passwort"
               value={password}
               onChange={handleChange}
-              onBlur={validateInput}
+              onBlur={handleChange}
               onKeyUp={checkCapsLock}
             />
             {error.password && (
@@ -360,7 +227,7 @@ const SignUp = ({
               placeholder="Passwort wiederholen"
               value={confirm_password}
               onChange={handleChange}
-              onBlur={validateInput}
+              onBlur={handleChange}
               onKeyUp={checkCapsLock}
             />
             {error.confirm_password && (
@@ -384,7 +251,7 @@ const SignUp = ({
               id="salutation"
               value={salutation}
               onChange={handleChange}
-              onBlur={validateInput}
+              onBlur={handleChange}
             >
               <option value="">- Bitte Anrede wählen -</option>
               <option value="Frau">Frau</option>
@@ -406,7 +273,7 @@ const SignUp = ({
               placeholder="Vorname"
               value={firstname.charAt(0).toUpperCase() + firstname.slice(1)}
               onChange={handleChange}
-              onBlur={validateInput}
+              onBlur={handleChange}
             />
             {error.firstname && (
               <small className="err" ref={errorRef}>
@@ -423,7 +290,7 @@ const SignUp = ({
               placeholder="Nachname"
               value={lastname.charAt(0).toUpperCase() + lastname.slice(1)}
               onChange={handleChange}
-              onBlur={validateInput}
+              onBlur={handleChange}
             />
             {error.lastname && (
               <small className="err" ref={errorRef}>
@@ -441,7 +308,7 @@ const SignUp = ({
                 placeholder="Straße"
                 value={street.charAt(0).toUpperCase() + street.slice(1)}
                 onChange={handleChange}
-                onBlur={validateInput}
+                onBlur={handleChange}
               />
 
               <input
@@ -451,7 +318,7 @@ const SignUp = ({
                 placeholder="Nr./ID"
                 value={street_number}
                 onChange={handleChange}
-                onBlur={validateInput}
+                onBlur={handleChange}
               />
             </div>
             {error.street && (
@@ -477,7 +344,7 @@ const SignUp = ({
                 placeholder="PLZ"
                 value={zip_code}
                 onChange={handleChange}
-                onBlur={validateInput}
+                onBlur={handleChange}
               />
 
               <input
@@ -487,7 +354,7 @@ const SignUp = ({
                 placeholder="Stadt"
                 value={city.charAt(0).toUpperCase() + city.slice(1)}
                 onChange={handleChange}
-                onBlur={validateInput}
+                onBlur={handleChange}
               />
             </div>
             {error.zip_code && (
@@ -508,7 +375,7 @@ const SignUp = ({
               id="country"
               value={country}
               onChange={handleChange}
-              onBlur={validateInput}
+              onBlur={handleChange}
             >
               <option value="">- Bitte Land wählen -</option>
               <option value="Deutschland">Deutschland</option>
@@ -528,6 +395,7 @@ const SignUp = ({
             placeholder="+4915114302718"
             value={tel}
             onChange={handleChange}
+            onBlur={handleChange}
           />
 
           <div className="group">
@@ -538,7 +406,7 @@ const SignUp = ({
               placeholder="DD.MM.YYYY"
               value={birth_date}
               onChange={handleChange}
-              onBlur={validateInput}
+              onBlur={handleChange}
             />
             {error.birth_date && (
               <small className="err" ref={errorRef}>
