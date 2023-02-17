@@ -1,5 +1,4 @@
-const validateInput = (e, error, confirm_password, password) => {
-  let { id, value } = e.target;
+export const validateInput = (id, value, confirm_password, password, error) => {
   const stateObj = { ...error, [id]: "" };
 
   switch (id) {
@@ -89,5 +88,3 @@ const validateInput = (e, error, confirm_password, password) => {
 
   return stateObj;
 };
-
-export default validateInput;

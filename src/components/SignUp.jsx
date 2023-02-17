@@ -3,6 +3,7 @@ import { registerUser } from "../utils/auth";
 import { Navigate } from "react-router-dom";
 import Loading from "./Loading";
 import { handleBackendErrors } from "../utils/handleBackendErrors";
+import { validateInput } from "../utils/validateInput";
 import useCapsLockCheck from "../utils/checkCapsLock";
 import "../styles/signUp.css";
 
@@ -70,7 +71,9 @@ const SignUp = ({
   const [isCapsLockOn, checkCapsLock] = useCapsLockCheck();
 
   const handleChange = (e) => {
-    setFormState((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    const { id, value } = e.target;
+    setFormState((prev) => ({ ...prev, [id]: value }));
+    setError(validateInput(id, value, confirm_password, password, error));
   };
 
   // Submit the form
@@ -186,6 +189,7 @@ const SignUp = ({
               type="email"
               placeholder="E-Mail Adresse"
               value={email}
+              onBlur={handleChange}
               onChange={handleChange}
             />
 
@@ -204,6 +208,7 @@ const SignUp = ({
               placeholder="Passwort"
               value={password}
               onChange={handleChange}
+              onBlur={handleChange}
               onKeyUp={checkCapsLock}
             />
             {error.password && (
@@ -222,6 +227,7 @@ const SignUp = ({
               placeholder="Passwort wiederholen"
               value={confirm_password}
               onChange={handleChange}
+              onBlur={handleChange}
               onKeyUp={checkCapsLock}
             />
             {error.confirm_password && (
@@ -245,6 +251,7 @@ const SignUp = ({
               id="salutation"
               value={salutation}
               onChange={handleChange}
+              onBlur={handleChange}
             >
               <option value="">- Bitte Anrede wählen -</option>
               <option value="Frau">Frau</option>
@@ -266,6 +273,7 @@ const SignUp = ({
               placeholder="Vorname"
               value={firstname.charAt(0).toUpperCase() + firstname.slice(1)}
               onChange={handleChange}
+              onBlur={handleChange}
             />
             {error.firstname && (
               <small className="err" ref={errorRef}>
@@ -282,6 +290,7 @@ const SignUp = ({
               placeholder="Nachname"
               value={lastname.charAt(0).toUpperCase() + lastname.slice(1)}
               onChange={handleChange}
+              onBlur={handleChange}
             />
             {error.lastname && (
               <small className="err" ref={errorRef}>
@@ -299,6 +308,7 @@ const SignUp = ({
                 placeholder="Straße"
                 value={street.charAt(0).toUpperCase() + street.slice(1)}
                 onChange={handleChange}
+                onBlur={handleChange}
               />
 
               <input
@@ -308,6 +318,7 @@ const SignUp = ({
                 placeholder="Nr./ID"
                 value={street_number}
                 onChange={handleChange}
+                onBlur={handleChange}
               />
             </div>
             {error.street && (
@@ -333,6 +344,7 @@ const SignUp = ({
                 placeholder="PLZ"
                 value={zip_code}
                 onChange={handleChange}
+                onBlur={handleChange}
               />
 
               <input
@@ -342,6 +354,7 @@ const SignUp = ({
                 placeholder="Stadt"
                 value={city.charAt(0).toUpperCase() + city.slice(1)}
                 onChange={handleChange}
+                onBlur={handleChange}
               />
             </div>
             {error.zip_code && (
@@ -362,6 +375,7 @@ const SignUp = ({
               id="country"
               value={country}
               onChange={handleChange}
+              onBlur={handleChange}
             >
               <option value="">- Bitte Land wählen -</option>
               <option value="Deutschland">Deutschland</option>
@@ -381,6 +395,7 @@ const SignUp = ({
             placeholder="+4915114302718"
             value={tel}
             onChange={handleChange}
+            onBlur={handleChange}
           />
 
           <div className="group">
@@ -391,6 +406,7 @@ const SignUp = ({
               placeholder="DD.MM.YYYY"
               value={birth_date}
               onChange={handleChange}
+              onBlur={handleChange}
             />
             {error.birth_date && (
               <small className="err" ref={errorRef}>
