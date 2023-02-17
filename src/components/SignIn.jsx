@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { loginUser } from "../utils/auth";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaEye, FaEyeSlash } from "react-icons/fa";
+import { togglePassword } from "../utils/showPassword";
+import useCapsLockCheck from "../utils/checkCapsLock";
+import { handleBackendErrors } from "../utils/handleBackendErrors";
+import { validateInput } from "../utils/validateInput";
 import Loading from "./Loading";
 import "../styles/login.css";
 
@@ -15,18 +19,52 @@ const SignIn = ({
     email: "",
     password: "",
   });
+  const [error, setError] = useState({
+    email: "",
+    password: "",
+  });
+  const errorRef = useRef();
+  const [isCapsLockOn, checkCapsLock] = useCapsLockCheck();
+  const [passwordShown, setPasswordShown] = useState(false);
 
-  const handleChange = (e) =>
+  const handleChange = (e) => {
+    const { id, value } = e.target;
     setFormState((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    setError(validateInput(id, value, password, error));
+  };
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      if (!email || !password)
-        throw new Error("Email und Passwort sind erforderlich.");
+
+      // Checking for missing values
+      const errors = {};
+      if (!email) {
+        errors.email = "Bitte Email angeben.";
+      }
+      if (!password) {
+        errors.password = "Bitte Passwort angeben.";
+      }
+
+      // Set the error state if there are any errors
+      setError(errors);
+
+      // If there are any errors, stop the form submission
+      if (Object.keys(errors).length > 0) {
+        errorRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        return;
+      }
       setLoadingAuthRequest(true);
+
       const { data, error } = await loginUser({ email, password });
-      if (error) throw error;
+      if (error) {
+        handleBackendErrors(errors, setError, error);
+        setLoadingAuthRequest(false);
+        return;
+      }
       setToken(data.token);
       setLoadingAuthRequest(false);
       localStorage.setItem("token", data.token);
@@ -68,20 +106,52 @@ const SignIn = ({
           <h3>Einloggen</h3>
           <form onSubmit={handleSubmit}>
             <div className="input-wrapper">
-              <input
-                id="email"
-                type="email"
-                placeholder="E-Mail"
-                value={email}
-                onChange={handleChange}
-              />
-              <input
-                id="password"
-                type="password"
-                placeholder="Passwort"
-                value={password}
-                onChange={handleChange}
-              />
+              <div className="group">
+                <input
+                  className={error.email ? "err" : "input"}
+                  id="email"
+                  type="email"
+                  placeholder="E-Mail Adresse"
+                  value={email}
+                  onBlur={handleChange}
+                  onChange={handleChange}
+                />
+                {error.email && (
+                  <small className="err" ref={errorRef}>
+                    {error.email}
+                  </small>
+                )}
+              </div>
+
+              <div className="group">
+                <input
+                  className={error.password ? "err" : "input"}
+                  id="password"
+                  type={passwordShown ? "text" : "password"}
+                  placeholder="Passwort"
+                  value={password}
+                  onChange={handleChange}
+                  onBlur={handleChange}
+                  onKeyUp={checkCapsLock}
+                />
+                <i
+                  onClick={() =>
+                    togglePassword(passwordShown, setPasswordShown)
+                  }
+                >
+                  {!passwordShown ? (
+                    <FaEye size="2.5rem" />
+                  ) : (
+                    <FaEyeSlash size="2.5rem" />
+                  )}
+                </i>
+                {error.password && (
+                  <small className="err" ref={errorRef}>
+                    {error.password}
+                  </small>
+                )}
+                {isCapsLockOn && <small>Feststelltaste ist aktiviert!</small>}
+              </div>
             </div>
             <div className="button-wrapper">
               <button className="button" type="submit">

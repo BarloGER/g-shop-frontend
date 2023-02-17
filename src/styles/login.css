@@ -83,6 +83,28 @@
   margin-bottom: 3rem;
 }
 
+.login-form .login-box .input-wrapper .err {
+  border: 2px solid var(--red);
+}
+
+.login-form .login-box .input-wrapper .group {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form .login-box .input-wrapper small {
+  font-size: 1.5rem;
+  color: var(--white);
+  background-color: var(--red);
+}
+
+.login-form .login-box i {
+  position: absolute;
+  padding-top: 0.9rem;
+  right: 22%;
+  color: var(--dust);
+}
+
 .login-form .login-box .button-wrapper {
   display: flex;
   flex-direction: column;
