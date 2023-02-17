@@ -47,6 +47,20 @@ select {
   font-size: 1.5rem;
 }
 
+.sign-up .data .err {
+  border: 2px solid var(--red);
+}
+
+.sign-up .data .personal-data .err1 {
+  width: 20%;
+  border: 2px solid var(--red);
+}
+
+.sign-up .data .personal-data .err2 {
+  width: 80%;
+  border: 2px solid var(--red);
+}
+
 .sign-up .data .login-data {
   display: flex;
   flex-direction: column;
@@ -116,6 +130,17 @@ select {
   color: var(--white);
   background-color: var(--red);
   margin-bottom: 1rem;
+}
+
+.sign-up .group {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-up small {
+  font-size: 1.5rem;
+  color: var(--white);
+  background-color: var(--red);
 }
 
 /* ---------------------------------- End of SPECIFIC styling ---------------------------------- */
