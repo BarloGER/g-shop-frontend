@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 
+// This component is used to wrap the app's routes and display the header
+
 const Layout = ({
   isAuthenticated,
   setToken,

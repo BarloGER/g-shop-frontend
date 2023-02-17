@@ -1,3 +1,4 @@
+// Import necessary dependencies
 import { useEffect, useState } from "react";
 import {
   createBrowserRouter,
@@ -6,13 +7,18 @@ import {
   Route,
 } from "react-router-dom";
 
+// Import necessary functions
+import { getUser } from "./utils/auth";
+
+// Import used components
 import Layout from "./components/Layout";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserProfile from "./components/UserProfile";
 import NotFound from "./components/NotFound";
-import { getUser } from "./utils/auth";
+
+// This is the main component of the app
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -20,6 +26,7 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [loadingAuthRequest, setLoadingAuthRequest] = useState(false);
 
+  // This effect checks if the user is authenticated and sets the user state accordingly
   useEffect(() => {
     const validateToken = async () => {
       try {
@@ -39,6 +46,7 @@ const App = () => {
     token && validateToken();
   }, [token]);
 
+  // This function is used to log the user out
   const logOut = () => {
     localStorage.removeItem("token");
     setToken(null);
@@ -46,6 +54,7 @@ const App = () => {
     setIsAuthenticated(false);
   };
 
+  // This function is used to log the user in
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route
@@ -62,8 +71,10 @@ const App = () => {
           />
         }
       >
+        {/* This route is used to display the home page */}
         <Route index element={<Home />} />
 
+        {/* This route is used to display the sign-up page */}
         <Route
           path="/signup"
           element={
@@ -76,6 +87,8 @@ const App = () => {
             />
           }
         />
+
+        {/* This route is used to display the user's profile page, if the user is logged in*/}
         <Route
           path="auth"
           element={<ProtectedRoute isAuthenticated={isAuthenticated} />}
@@ -83,6 +96,7 @@ const App = () => {
           <Route index element={<UserProfile user={user} />} />
         </Route>
 
+        {/* This route is used to display a 404 page */}
         <Route path="*" element={<NotFound />} />
       </Route>
     )

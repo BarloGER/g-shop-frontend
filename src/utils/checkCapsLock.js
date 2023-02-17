@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+// Used in the following components: SignIn.jsx and SignUp.jsx
+
+// This hook checks if the caps lock is on or off in the corresponding input fields
 const useCapsLockCheck = () => {
   const [isCapsLockOn, setIsCapsLockOn] = useState(false);
 

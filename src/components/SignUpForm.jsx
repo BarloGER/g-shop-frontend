@@ -1,3 +1,7 @@
+import "../styles/signUp.css";
+
+// This component displays a sign-up form that is used in the SignUp component
+
 const SignUpForm = ({
   email,
   password,

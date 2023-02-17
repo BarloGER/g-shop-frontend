@@ -1,20 +1,26 @@
+// Import necessary dependencies
 import { useState, useRef } from "react";
 import { Navigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+// Import necessary custom hooks and functions
 import { registerUser } from "../utils/auth";
 import { handleBackendErrors } from "../utils/handleBackendErrors";
 import { validateInput } from "../utils/validateInput";
 import { togglePassword } from "../utils/showPassword";
 import useCapsLockCheck from "../utils/checkCapsLock";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+// Import used components
 import SignUpForm from "./SignUpForm";
 import Loading from "./Loading";
-import "../styles/signUp.css";
 
 // ToDo: Add Input Fields for business customer
 // ToDo: Add second personal-data form for alternative address
 // ToDo: Refactor
 // ToDo: Fix error scroll useRef
 // ? Maybe add "Datenschutz" hint
+
+// This component displays a sign-up form and handles the user's submission
 
 const SignUp = ({
   isAuthenticated,
@@ -23,6 +29,7 @@ const SignUp = ({
   loadingAuthRequest,
   setLoadingAuthRequest,
 }) => {
+  //--------------------------------------  Start States  --------------------------------------
   const [
     {
       email,
@@ -71,22 +78,29 @@ const SignUp = ({
     tel: "",
   });
 
-  const errorRef = useRef();
+  // Check if Caps Lock is on
   const [isCapsLockOn, checkCapsLock] = useCapsLockCheck();
+
+  // Show or hide password
   const [passwordShown, setPasswordShown] = useState(false);
 
+  // Ref for error scroll (not working)
+  const errorRef = useRef();
+  //--------------------------------------  End States  --------------------------------------
+
+  // Handle form input changes and set the error state if there are any errors
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormState((prev) => ({ ...prev, [id]: value }));
     setError(validateInput(id, value, confirm_password, password, error));
   };
 
-  // Submit the form
+  // --------------------------------------  Start Form Submission  --------------------------------------
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
 
-      // Checking for missing values
+      // Check for missing values and add them to the errors object if necessary
       const errors = {};
       if (!email) {
         errors.email = "Bitte Email angeben.";
@@ -125,10 +139,10 @@ const SignUp = ({
         errors.country = "Bitte Land angeben.";
       }
 
-      // Set the error state if there are any errors
+      // Set the error state if there are any errors in the errors object
       setError(errors);
 
-      // If there are any errors, stop the form submission
+      // If there are any errors, the form wont be submitted and the user will be scrolled to the first error message
       if (Object.keys(errors).length > 0) {
         errorRef.current.scrollIntoView({
           behavior: "smooth",
@@ -153,13 +167,14 @@ const SignUp = ({
         country,
       });
 
-      // Handling backend errors
+      // If there are any backend errors, handle it and set the error and the loading state
       if (error) {
         handleBackendErrors(errors, setError, error);
         setLoadingAuthRequest(false);
         return;
       }
 
+      // Set the token and the isAuthenticated state and save the token in the local storage if the user was successfully registered
       setToken(data.token);
       setIsAuthenticated(true);
       setLoadingAuthRequest(false);
@@ -168,8 +183,12 @@ const SignUp = ({
       setLoadingAuthRequest(false);
     }
   };
+  // --------------------------------------  End Form Submission  --------------------------------------
 
+  // If there is an ongoing authentication request, show the Loading component
   if (loadingAuthRequest) return <Loading />;
+
+  // If the user is authenticated, redirect to the auth page
   if (isAuthenticated) return <Navigate to="/auth" />;
 
   const props = {

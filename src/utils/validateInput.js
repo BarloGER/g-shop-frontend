@@ -1,4 +1,7 @@
-export const validateInput = (id, value, confirm_password, password, error) => {
+// Used in the following components: SignIn.jsx and SignUp.jsx
+
+// This function validates the input fields and sets the error messages to the corresponding input fields
+export const validateInput = (id, value, password, error) => {
   const stateObj = { ...error, [id]: "" };
 
   switch (id) {
