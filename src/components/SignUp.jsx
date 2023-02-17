@@ -5,6 +5,8 @@ import Loading from "./Loading";
 import { handleBackendErrors } from "../utils/handleBackendErrors";
 import { validateInput } from "../utils/validateInput";
 import useCapsLockCheck from "../utils/checkCapsLock";
+import { togglePassword } from "../utils/showPassword";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../styles/signUp.css";
 
 // ToDo: Add Input Fields for business customer
@@ -69,6 +71,7 @@ const SignUp = ({
   });
   const errorRef = useRef();
   const [isCapsLockOn, checkCapsLock] = useCapsLockCheck();
+  const [passwordShown, setPasswordShown] = useState(false);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -204,13 +207,20 @@ const SignUp = ({
             <input
               className={error.password ? "err" : "input"}
               id="password"
-              type="password"
+              type={passwordShown ? "text" : "password"}
               placeholder="Passwort"
               value={password}
               onChange={handleChange}
               onBlur={handleChange}
               onKeyUp={checkCapsLock}
             />
+            <i onClick={() => togglePassword(passwordShown, setPasswordShown)}>
+              {!passwordShown ? (
+                <FaEye size="2.5rem" />
+              ) : (
+                <FaEyeSlash size="2.5rem" />
+              )}
+            </i>
             {error.password && (
               <small className="err" ref={errorRef}>
                 {error.password}
@@ -223,13 +233,20 @@ const SignUp = ({
             <input
               className={error.confirm_password ? "err" : "input"}
               id="confirm_password"
-              type="password"
+              type={passwordShown ? "text" : "password"}
               placeholder="Passwort wiederholen"
               value={confirm_password}
               onChange={handleChange}
               onBlur={handleChange}
               onKeyUp={checkCapsLock}
             />
+            <i onClick={() => togglePassword(passwordShown, setPasswordShown)}>
+              {!passwordShown ? (
+                <FaEye size="2.5rem" />
+              ) : (
+                <FaEyeSlash size="2.5rem" />
+              )}
+            </i>
             {error.confirm_password && (
               <small className="err" ref={errorRef}>
                 {error.confirm_password}

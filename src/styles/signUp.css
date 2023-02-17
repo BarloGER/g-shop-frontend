@@ -67,6 +67,13 @@ select {
   gap: 2rem;
 }
 
+.sign-up .data .login-data .group i {
+  position: absolute;
+  right: 12%;
+  padding-top: 0.9rem;
+  color: var(--dust);
+}
+
 /* ------------------------------------------------------------------------------------------------------ */
 
 .sign-up .data .personal-data {
