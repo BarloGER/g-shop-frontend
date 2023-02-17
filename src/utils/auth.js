@@ -1,58 +1,60 @@
+import axios from "axios";
+
 export const getUser = async (token) => {
   try {
-    const res = await fetch(`${import.meta.env.VITE_API_KEY}/auth/me`, {
-      method: "GET",
+    const res = await axios.get(`${import.meta.env.VITE_API_KEY}/auth/me`, {
       headers: {
         Authorization: token,
       },
     });
-    if (!res.ok) {
-      const { error } = await res.json();
-      throw new Error(error);
-    }
-    const data = await res.json();
-    return { data };
+    return { data: res.data };
   } catch (error) {
-    return { error };
+    if (error.response && error.response.data && error.response.data.error) {
+      console.log(error.response.data.error);
+      return { error: error.response.data.error };
+    }
+    return { error: "An error occurred" };
   }
 };
 
 export const registerUser = async (credentials) => {
   try {
-    const res = await fetch(`${import.meta.env.VITE_API_KEY}/auth/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    });
-    if (!res.ok) {
-      const { error } = await res.json();
-      throw new Error(error);
-    }
-    const data = await res.json();
-    return { data };
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_KEY}/auth/signup`,
+      credentials,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return { data: res.data };
   } catch (error) {
-    return { error };
+    if (error.response && error.response.data && error.response.data.error) {
+      console.log(error.response.data);
+      return { error: error.response.data.error };
+    }
+    return { error: "An error occurred" };
   }
 };
 
 export const loginUser = async (credentials) => {
   try {
-    const res = await fetch(`${import.meta.env.VITE_API_KEY}/auth/signin`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    });
-    if (!res.ok) {
-      const { error } = await res.json();
-      throw new Error(error);
-    }
-    const data = await res.json();
-    return { data };
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_KEY}/auth/signin`,
+      credentials,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return { data: res.data };
   } catch (error) {
-    return { error };
+    if (error.response && error.response.data && error.response.data.error) {
+      console.log(error.response.data.error);
+      return { error: error.response.data.error };
+    }
+    return { error: "An error occurred" };
   }
 };
