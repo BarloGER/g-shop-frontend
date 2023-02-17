@@ -11,12 +11,6 @@ export const validateInput = (id, value, confirm_password, password, error) => {
     case "password":
       if (!value) {
         stateObj[id] = "Bitte Passwort angeben.";
-      } else if (confirm_password && value !== confirm_password) {
-        stateObj["confirm_password"] = "Passwort stimmt nicht überein.";
-      } else {
-        stateObj["confirm_password"] = confirm_password
-          ? ""
-          : error.confirm_password;
       }
       break;
 
