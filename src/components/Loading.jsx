@@ -1,9 +1,7 @@
+import ClipLoader from "react-spinners/ClipLoader";
+
 const Loading = () => {
-  return (
-    <div className="spinner-border" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </div>
-  );
+  return <ClipLoader color="#36d7b7" />;
 };
 
 export default Loading;
