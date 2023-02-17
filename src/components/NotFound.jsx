@@ -1,3 +1,5 @@
+// This component is used to display a 404 page if the user tries to access a page that does not exist
+
 const NotFound = () => {
   return (
     <div>

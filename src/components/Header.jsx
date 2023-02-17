@@ -1,3 +1,4 @@
+// Import necessary dependencies
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -8,10 +9,12 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
+// Import used components and styles
 import SignIn from "./SignIn";
 import NavBar from "./NavBar";
-
 import "../styles/header.css";
+
+// This component is the header of the website. It contains the search bar, the language selection, the account section and the navigation bar.
 
 const Header = ({
   isAuthenticated,

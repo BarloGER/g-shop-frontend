@@ -1,3 +1,6 @@
+// Used in the following components: SignIn.jsx and SignUp.jsx
+
+// This function handles the backend errors and sets the error messages to the corresponding input fields
 export const handleBackendErrors = (errors, setError, error) => {
   const updatedErrors = { ...errors };
   if (error.includes("E-Mail")) {

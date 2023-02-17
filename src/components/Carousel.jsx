@@ -1,5 +1,7 @@
 import "../styles/carousel.css";
 
+// This component is used to display the carousel on the home page
+
 const Carousel = () => {
   return (
     <section className="carousel" aria-label="Gallery">

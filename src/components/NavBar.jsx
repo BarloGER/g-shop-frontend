@@ -1,5 +1,7 @@
 import "../styles/navbar.css";
 
+// This component is used to display the navbar
+
 const NavBar = () => {
   return (
     <div className="placeholder-for-navbar">
