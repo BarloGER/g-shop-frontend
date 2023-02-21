@@ -90,7 +90,7 @@ const App = () => {
 
         {/* This route is used to display the user's profile page, if the user is logged in*/}
         <Route
-          path="auth"
+          path="auth/me"
           element={<ProtectedRoute isAuthenticated={isAuthenticated} />}
         >
           <Route index element={<UserProfile user={user} />} />

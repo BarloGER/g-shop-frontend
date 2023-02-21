@@ -13,11 +13,10 @@ export const getUser = async (token) => {
     return { data: res.data };
   } catch (error) {
     // If there is an error, return the error message
-    if (error.response.data.error) {
-      console.log(error.response.data.error);
-      return { error: error.response.data.error };
+    if (error.response.data) {
+      // console.log(error.response.data);
+      return error.response.data;
     }
-    // If there is no error message, return a generic error
     return { error: "An error occurred" };
   }
 };
@@ -37,9 +36,9 @@ export const registerUser = async (credentials) => {
     );
     return { data: res.data };
   } catch (error) {
-    if (error.response.data.error) {
-      console.log(error.response.data);
-      return { error: error.response.data.error };
+    if (error.response.data) {
+      // console.log(error.response.data);
+      return error.response.data;
     }
     return { error: "An error occurred" };
   }
@@ -61,9 +60,28 @@ export const loginUser = async (credentials) => {
     );
     return { data: res.data };
   } catch (error) {
-    if (error.response.data.error) {
-      console.log(error.response.data.error);
-      return { error: error.response.data.error };
+    if (error.response.data) {
+      // console.log(error.response.data);
+      return error.response.data;
+    }
+    return { error: "An error occurred" };
+  }
+};
+
+// ----------------------------------------------------------------------------
+
+export const deleteUser = async (token) => {
+  try {
+    const res = await axios.delete(`${import.meta.env.VITE_API_KEY}/auth/me`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    return { data: res.data };
+  } catch (error) {
+    if (error.response.data) {
+      // console.log(error.response.data);
+      return error.response.data;
     }
     return { error: "An error occurred" };
   }
