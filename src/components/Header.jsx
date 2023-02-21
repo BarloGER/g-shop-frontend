@@ -112,7 +112,7 @@ const Header = ({
                       setIsAccExpanded(false);
                     }}
                   >
-                    <Link to="/auth">Mein Konto</Link>
+                    <Link to="/auth/me">Mein Konto</Link>
                   </button>
                   <button
                     onClick={() => {

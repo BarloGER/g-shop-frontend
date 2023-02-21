@@ -189,7 +189,7 @@ const SignUp = ({
   if (loadingAuthRequest) return <Loading />;
 
   // If the user is authenticated, redirect to the auth page
-  if (isAuthenticated) return <Navigate to="/auth" />;
+  if (isAuthenticated) return <Navigate to="/auth/me" />;
 
   const props = {
     email,
