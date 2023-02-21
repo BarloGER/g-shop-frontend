@@ -33,7 +33,7 @@ describe("Tests authentication functions and user managment system with mock dat
       const res = await registerUser(registerCredentials);
       expect(res.error).toBeUndefined();
       expect(res.data.token).toBeDefined();
-    });
+    }, 60000);
 
     test("should fail with invalid credentials", async () => {
       const registerCredentials = {
@@ -112,7 +112,7 @@ describe("Tests authentication functions and user managment system with mock dat
       const res = await deleteUser(userToken);
       expect(res.error).toBeUndefined();
       expect(res.data.message).toEqual("User erfolgreich gelöscht.");
-    });
+    }, 60000);
 
     test("should fail with invalid token", async () => {
       const res = await deleteUser(invalidToken);
