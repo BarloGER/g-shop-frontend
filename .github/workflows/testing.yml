@@ -27,5 +27,5 @@ jobs:
 
       - name: Run tests
         env:
-          VITE_API_KEY: ${{ secrets.NODE_ENV }}
+          VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
         run: npm test
